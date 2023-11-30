@@ -18,3 +18,5 @@ To set up the project, follow these steps:
    ```
    http://localhost:3000/
    ```
+
+# lease go through files and find comments
