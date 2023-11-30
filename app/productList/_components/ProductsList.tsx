@@ -24,6 +24,7 @@ const ProductList: React.FC<ProductListProps> = ({
               <ProductItem key={product.id} product={product} />
             ))}
           </div>
+          {/* //TODO: Add better loading and no more products messages and styling */}
           {loading && <p className="text-center">Loading...</p>}
           {!hasMore && <p className="text-center">No more products to load.</p>}
         </main>

@@ -1,5 +1,7 @@
-// hooks/useProducts.ts
-import { useState, useCallback, useRef } from "react";
+// MISSING: testing is not complete
+// this file handles the API route for fetching products
+// MISSING: use env variable to store the API URL
+import { useState, useCallback } from "react";
 import axios from "axios";
 import { Product } from "../../types/Product"; // assuming this is your type definition for Product
 
@@ -37,6 +39,7 @@ const useProducts = (): UseProductsReturn => {
     ): Promise<void> => {
       setLoading(true);
       try {
+        // MISSING: use env variable to store the API URL
         const response = await axios.get(`http://localhost:3000/api/products`, {
           params: {
             page,

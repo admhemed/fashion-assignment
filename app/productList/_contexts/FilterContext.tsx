@@ -1,4 +1,3 @@
-// FilterContext.tsx
 import React, { createContext, useContext, ReactNode } from "react";
 
 interface FilterContextProps {

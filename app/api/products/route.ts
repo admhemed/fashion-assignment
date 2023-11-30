@@ -1,14 +1,8 @@
+// MISSING: some variables are not typed
+// MISSING: should create a type for the response
+// MISSING: unit testing
 import { Product } from "../../types/Product";
 import { NextRequest, NextResponse } from "next/server";
-
-// Function to fetch products from the external API
-const fetchProducts = async (): Promise<Product[]> => {
-  const response = await fetch(
-    "https://s3-eu-west-1.amazonaws.com/fid-recruiting/fid-task-4-ffront-products.json"
-  );
-  const products: Product[] = await response.json();
-  return products;
-};
 
 // Handler for the API route
 export async function GET(req: NextRequest) {
@@ -22,6 +16,8 @@ export async function GET(req: NextRequest) {
   const pageSize = 15; // Set the number of items per page
 
   try {
+    // whenever we need to fetch data from an external API, we need to use the fetch API
+    // but it is no problem because Next.js caches the result of the fetch call
     const response = await fetch(
       "https://s3-eu-west-1.amazonaws.com/fid-recruiting/fid-task-4-ffront-products.json"
     );

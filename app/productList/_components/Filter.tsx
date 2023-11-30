@@ -1,8 +1,7 @@
-import React from "react";
 import PriceFilter from "./PriceFilter";
 import SizeFilter from "./SizeFilter";
 import { useFilterContext } from "./FilterContext";
-
+// a container for all the filters
 const Filter: React.FC = () => {
   const { resetFilters } = useFilterContext();
 

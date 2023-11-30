@@ -1,3 +1,9 @@
+// I tried hard to keep this file as clean and small as possible
+// I refactored product fetching into a hook
+// used components for most of the UI
+// MISSING: tests, checking types, and refactor metadata and layout into layout.tsx
+// MISSING: handling missing dependency warning in the useEffect
+// MISSING: unify styling among components
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import ProductsList from "./_components/ProductsList";
@@ -21,12 +27,12 @@ const ProductsPage: React.FC = () => {
     page,
   } = useProducts();
 
-  const mounted = useRef(false);
-
   // Update on filter changes
   useEffect(() => {
     loadMoreProducts(selectedSizes, minPrice, maxPrice, false, 1);
     setPage(1);
+    // loadMoreProducts should be added to the dependency array
+    // TODO: create a function using useCallback to avoid this warning
   }, [selectedSizes, minPrice, maxPrice, setPage]);
 
   const handleFilterChange = (newMinPrice: number, newMaxPrice: number) => {
@@ -43,17 +49,20 @@ const ProductsPage: React.FC = () => {
     setProducts([]);
     setPage(1);
   };
+  // TODO: Add a loading indicator
+  // TODO: Refactor metadata and layout into layout.tsx
   return (
     <FilterProvider
       minPrice={minPrice}
       maxPrice={maxPrice}
       onPriceFilterChange={handleFilterChange}
-      availableSizes={availableSizes}
+      availableSizes={availableSizes} // this comes from route api/products
       selectedSizes={selectedSizes}
       setSelectedSizes={setSelectedSizes}
       resetFilters={resetFilters}
     >
       <div className="flex flex-col items-center justify-center overflow-hidden">
+        {/* // TODO: Refactor metadata and layout into layout.tsx  */}
         <Head>
           <title></title>
           <meta

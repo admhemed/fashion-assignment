@@ -1,4 +1,6 @@
-// ProductItem.tsx
+// IT IS MEMOIZED
+// TODO: use modal and button components from shadcn-ui
+// TODO: handle SEO and accessibility
 import React, { useState } from "react";
 import { Product } from "../../types/Product";
 import Modal from "../../../components/ui/Modal"; // Ensure this import points to your Modal component file
@@ -16,6 +18,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
     <div className="my-2">
       <span className="text-xs text-gray-600 ">Available Sizes:</span>
       <div className="flex mt-1 space-x-2">
+        {/* // TODO: some items has long list of sizes so we need to handle that */}
         {product.sizes.map((size) => (
           <span key={size} className="px-2 py-1 text-xs border rounded">
             {size}

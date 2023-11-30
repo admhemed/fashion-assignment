@@ -16,5 +16,5 @@ To set up the project, follow these steps:
 
 3. Access the application at:
    ```
-   http://localhost:3000/productList
+   http://localhost:3000/
    ```

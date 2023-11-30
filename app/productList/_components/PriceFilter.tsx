@@ -1,3 +1,4 @@
+// TODO:use a custom input from shadcn-ui
 import React from "react";
 import { useFilterContext } from "./FilterContext";
 
@@ -9,7 +10,6 @@ const PriceFilter: React.FC = () => {
 
   const handleMinPriceBlur = () => {
     const newMinPrice = localMinPrice || 0;
-    console.log("minPrice:", newMinPrice, maxPrice);
     onPriceFilterChange(newMinPrice, maxPrice);
   };
 
@@ -66,7 +66,7 @@ const PriceFilter: React.FC = () => {
           type="number"
           placeholder="Max Price"
           onBlur={handleMaxPriceBlur}
-          onChange={handleMaxPriceChange} // Refactored line
+          onChange={handleMaxPriceChange}
           onKeyDown={(e) => handleKeyDown(e, () => handleMaxPriceBlur())}
           value={localMaxPrice}
           min={0}

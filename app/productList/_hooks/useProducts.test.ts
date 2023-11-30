@@ -17,7 +17,7 @@ afterEach(() => {
 });
 
 describe("useProducts Hook", () => {
-  it("loads products successfully and updates state", async () => {
+  it("loads products successfully and updates state (still needs fixing/debugging)", async () => {
     const { result } = renderHook(() => useProducts());
 
     // Prepare the mock response data

@@ -1,6 +1,6 @@
-// Import the type
+// MISSING: tests, checking types, and it needs some layout and styling.
 "use client";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { ProductStatistics } from "../types/Statistics";
 

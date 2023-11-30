@@ -1,9 +1,12 @@
+//TODO: this fetch is repeated over the routs, we should factor it out
+// MISSING: unit testing
 import { Product } from "../../types/Product";
 import { NextRequest, NextResponse } from "next/server";
 import { ProductStatistics } from "../../types/Statistics";
 
 export async function GET(): Promise<NextResponse> {
   try {
+    //TODO: this fetch is repeated over the routs, we should factor it out
     const response = await fetch(
       "https://s3-eu-west-1.amazonaws.com/fid-recruiting/fid-task-4-ffront-products.json"
     );

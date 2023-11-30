@@ -1,4 +1,5 @@
-// FilterContext.tsx
+// NOTICE: look at the type extending
+// NO logic other than a context
 import React, { createContext, useContext, ReactNode } from "react";
 
 interface FilterContextProps {

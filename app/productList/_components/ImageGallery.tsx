@@ -1,5 +1,7 @@
-// ImageGallery.tsx
-import React, { useState } from "react";
+// TODO: change static width and height to auto
+// I added next.js config to pre load the images.
+// Images are layzy loaded
+import { useState } from "react";
 import Image from "next/image";
 
 interface ImageGalleryProps {
