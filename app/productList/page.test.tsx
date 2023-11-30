@@ -1,10 +1,14 @@
+import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
+import ProductsPage from "./page";
 import "@testing-library/jest-dom";
 
-import ProductsPage from "./page";
+describe("ProductsPage", () => {
+  it("renders a heading", () => {
+    render(<ProductsPage />);
 
-test("renders learn react link", () => {
-  render(<ProductsPage />);
-  const productListTitle = screen.getByText(/product list/i);
-  expect(productListTitle).toBeInTheDocument();
+    const heading = screen.getByText(/Product/i);
+
+    expect(heading).toBeInTheDocument();
+  });
 });
