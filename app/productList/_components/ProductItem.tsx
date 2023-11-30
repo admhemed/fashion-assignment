@@ -1,7 +1,7 @@
 // ProductItem.tsx
 import React, { useState } from "react";
-import { Product } from "../types/Product";
-import Modal from "./Modal"; // Ensure this import points to your Modal component file
+import { Product } from "../../types/Product";
+import Modal from "../../../components/ui/Modal"; // Ensure this import points to your Modal component file
 import ImageGallery from "./ImageGallery"; // Ensure this import points to your ImageGallery component file
 
 interface ProductItemProps {

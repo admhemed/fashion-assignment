@@ -1,7 +1,7 @@
 // hooks/useProducts.ts
 import { useState, useCallback, useRef } from "react";
 import axios from "axios";
-import { Product } from "../types/Product"; // assuming this is your type definition for Product
+import { Product } from "../../types/Product"; // assuming this is your type definition for Product
 
 interface UseProductsReturn {
   products: Product[];

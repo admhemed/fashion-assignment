@@ -2,11 +2,11 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import axios from "axios";
 import { Product } from "../types/Product";
-import ProductsList from "./ProductsList";
-import Filter from "./Filter";
+import ProductsList from "./_components/ProductsList";
+import Filter from "./_components/Filter";
 import Head from "next/head";
-import { FilterProvider } from "./FilterContext";
-import useProducts from "./useProducts";
+import { FilterProvider } from "./_components/FilterContext";
+import useProducts from "./_hooks/useProducts";
 
 const ProductsPage: React.FC = () => {
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
