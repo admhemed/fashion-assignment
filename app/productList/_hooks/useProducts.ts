@@ -12,10 +12,12 @@ interface UseProductsReturn {
     selectedSizes: string[],
     minPrice: number,
     maxPrice: number,
-    shouldLoadMore: boolean
+    shouldLoadMore: boolean,
+    page: number
   ) => Promise<void>;
   setPage: React.Dispatch<React.SetStateAction<number>>;
   setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+  page: number;
 }
 
 const useProducts = (): UseProductsReturn => {
@@ -30,7 +32,8 @@ const useProducts = (): UseProductsReturn => {
       selectedSizes: string[],
       minPrice: number,
       maxPrice: number,
-      shouldLoadMore: boolean
+      shouldLoadMore: boolean,
+      page: number
     ): Promise<void> => {
       setLoading(true);
       try {
@@ -56,7 +59,7 @@ const useProducts = (): UseProductsReturn => {
         setLoading(false);
       }
     },
-    [page]
+    []
   );
 
   return {
@@ -67,6 +70,7 @@ const useProducts = (): UseProductsReturn => {
     loadMoreProducts,
     setPage,
     setProducts,
+    page,
   };
 };
 

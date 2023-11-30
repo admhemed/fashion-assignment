@@ -20,6 +20,7 @@ const ProductsPage: React.FC = () => {
     availableSizes,
     loadMoreProducts,
     setPage,
+    page,
   } = useProducts();
 
   const mounted = useRef(false);
@@ -29,7 +30,7 @@ const ProductsPage: React.FC = () => {
   // Update on filter changes
   useEffect(() => {
     if (mounted.current) {
-      loadMoreProducts(selectedSizes, minPrice, maxPrice, false);
+      loadMoreProducts(selectedSizes, minPrice, maxPrice, false, 1);
       setPage(1);
     } else {
       mounted.current = true;
@@ -79,7 +80,7 @@ const ProductsPage: React.FC = () => {
         <ProductsList products={products} hasMore={hasMore} loading={loading} />
         <button
           onClick={() =>
-            loadMoreProducts(selectedSizes, minPrice, maxPrice, true)
+            loadMoreProducts(selectedSizes, minPrice, maxPrice, true, page)
           }
           disabled={!hasMore}
           className={`mt-4 mb-8 px-6 py-2 w-[20rem] text-lg font-semibold rounded-md shadow-sm text-white transition-colors duration-150 ${
