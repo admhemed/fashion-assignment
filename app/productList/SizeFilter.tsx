@@ -61,13 +61,13 @@ const SizeFilter: React.FC = () => {
               variant="outline"
               role="combobox"
               aria-expanded={open}
-              className="min-w-[200px] justify-between mt-1 h-[38px]"
+              className="min-w-[10em] justify-between mt-1 h-[38px]"
             >
               {displaySelectedSizes()}
               <ChevronsUpDown className="w-4 h-4 ml-2 opacity-50 shrink-0" />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="min-w-[200px] p-0 ">
+          <PopoverContent className="min-w-[10em] p-0 ">
             <Command>
               <CommandInput placeholder="Search size..." />
               <CommandEmpty>No size found.</CommandEmpty>

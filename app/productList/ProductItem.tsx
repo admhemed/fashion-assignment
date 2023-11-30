@@ -99,4 +99,4 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
   );
 };
 
-export default ProductItem;
+export default React.memo(ProductItem);

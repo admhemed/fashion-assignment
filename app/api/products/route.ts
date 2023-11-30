@@ -2,7 +2,7 @@ import { Product } from "../../types/Product";
 import { NextRequest, NextResponse } from "next/server";
 
 // Function to fetch products from the external API
-async function fetchProducts() {
+export async function fetchProducts() {
   const response = await fetch(
     "https://s3-eu-west-1.amazonaws.com/fid-recruiting/fid-task-4-ffront-products.json"
   );
@@ -11,7 +11,7 @@ async function fetchProducts() {
 }
 
 // Handler for the API route
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const page = parseInt(searchParams.get("page") || "1");
 

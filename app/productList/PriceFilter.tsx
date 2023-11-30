@@ -36,7 +36,7 @@ const PriceFilter: React.FC = () => {
   };
   return (
     <div className="flex justify-center gap-4 my-4 filter-container">
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center w-[10em]">
         <label
           htmlFor="max-price"
           className="text-sm font-medium text-gray-700"
@@ -54,7 +54,7 @@ const PriceFilter: React.FC = () => {
           className="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         />
       </div>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center  w-[10em]">
         <label
           htmlFor="max-price"
           className="text-sm font-medium text-gray-700"

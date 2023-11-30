@@ -1,74 +1,55 @@
+// Import the type
 "use client";
-import { useState, useEffect } from "react";
-import { Product } from "../types/Product";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { ProductStatistics } from "../types/Statistics";
 
-const ProductList = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [displayedProducts, setDisplayedProducts] = useState<Product[]>([]);
-  const [lastIndex, setLastIndex] = useState<number>(0);
-  const chunkSize = 20; // Number of products to load per "page"
+const ProductsStatisticsPage: React.FC = () => {
+  // Use the type in state declaration
+  const [statistics, setStatistics] = useState<ProductStatistics | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    fetch(
-      "https://s3-eu-west-1.amazonaws.com/fid-recruiting/fid-task-4-ffront-products.json"
-    )
-      .then((response) => response.json())
-      .then((data) => setProducts(data))
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
-
-  const loadMoreProducts = () => {
-    const newLastIndex = lastIndex + chunkSize;
-    setDisplayedProducts(products.slice(0, newLastIndex));
-    setLastIndex(newLastIndex);
+  const fetchProducts = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get("http://localhost:3000/api/statistics");
+      // Update state with the fetched data
+      setStatistics(response.data);
+    } catch (error) {
+      console.error("Error loading statistics:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  // Initial load
   useEffect(() => {
-    loadMoreProducts();
-  }, [products]);
-  useEffect(() => {
-    const handleScroll = () => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop !==
-        document.documentElement.offsetHeight
-      )
-        return;
-      loadMoreProducts();
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastIndex, products]);
-
-  // More code to handle scrolling and loading more products...
+    fetchProducts();
+  }, []);
 
   return (
-    <div className="product-list">
-      {displayedProducts.map((product) => (
-        <div key={product.id} className="product">
-          <img
-            src={product.images[0]}
-            alt={product.description}
-            className="product-image"
-          />
-          <h3 className="product-brand">{product.brand}</h3>
-          <p className="product-description">{product.description}</p>
-          <div className="product-prices">
-            <span className="original-price">${product.priceO.toFixed(2)}</span>
-            {product.priceR && (
-              <span className="reduced-price">
-                ${product.priceR.toFixed(2)}
-              </span>
-            )}
+    <div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        // Display the statistics details
+        statistics && (
+          <div>
+            <p>
+              Most Products Under 40 EUR: {statistics.mostProductsUnder40Brand}
+            </p>
+            <p>
+              Largest Size Selection Brand:{" "}
+              {statistics.largestSizeSelectionBrand}
+            </p>
+            <p>
+              Lowest Average Price for Size 32:{" "}
+              {statistics.lowestAvgPriceBrandSize32}
+            </p>
           </div>
-          <a href={product.url} className="product-link">
-            View Product
-          </a>
-        </div>
-      ))}
+        )
+      )}
     </div>
   );
 };
 
-export default ProductList;
+export default ProductsStatisticsPage;
