@@ -2,13 +2,13 @@ import { Product } from "../../types/Product";
 import { NextRequest, NextResponse } from "next/server";
 
 // Function to fetch products from the external API
-export async function fetchProducts() {
+const fetchProducts = async (): Promise<Product[]> => {
   const response = await fetch(
     "https://s3-eu-west-1.amazonaws.com/fid-recruiting/fid-task-4-ffront-products.json"
   );
-  const products = await response.json();
+  const products: Product[] = await response.json();
   return products;
-}
+};
 
 // Handler for the API route
 export async function GET(req: NextRequest) {
@@ -22,7 +22,11 @@ export async function GET(req: NextRequest) {
   const pageSize = 15; // Set the number of items per page
 
   try {
-    let products = await fetchProducts();
+    const response = await fetch(
+      "https://s3-eu-west-1.amazonaws.com/fid-recruiting/fid-task-4-ffront-products.json"
+    );
+
+    let products: Product[] = await response.json();
 
     // If size parameter is provided, filter the products by size
     if (selectedSizes) {

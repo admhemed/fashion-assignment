@@ -1,11 +1,14 @@
 import { Product } from "../../types/Product";
 import { NextRequest, NextResponse } from "next/server";
-import { fetchProducts } from "../products/route";
 import { ProductStatistics } from "../../types/Statistics";
 
 export async function GET(): Promise<NextResponse> {
   try {
-    const products: Product[] = await fetchProducts();
+    const response = await fetch(
+      "https://s3-eu-west-1.amazonaws.com/fid-recruiting/fid-task-4-ffront-products.json"
+    );
+
+    const products: Product[] = await response.json();
 
     // Filter products costing less than 40 EUR
     const brandsUnder40: Record<string, number> = products
@@ -62,13 +65,13 @@ export async function GET(): Promise<NextResponse> {
       }
     );
 
-    const response: ProductStatistics = {
+    const productsResponse: ProductStatistics = {
       mostProductsUnder40Brand,
       largestSizeSelectionBrand,
       lowestAvgPriceBrandSize32,
     };
 
-    return NextResponse.json(response);
+    return NextResponse.json(productsResponse);
   } catch (error) {
     return NextResponse.json(
       { error: "Internal Server Error" },

@@ -1,7 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import axios from "axios";
-import { Product } from "../types/Product";
+import React, { useState, useEffect, useRef } from "react";
 import ProductsList from "./_components/ProductsList";
 import Filter from "./_components/Filter";
 import Head from "next/head";
@@ -25,16 +23,10 @@ const ProductsPage: React.FC = () => {
 
   const mounted = useRef(false);
 
-  const mounted2 = useRef(false);
-
   // Update on filter changes
   useEffect(() => {
-    if (mounted.current) {
-      loadMoreProducts(selectedSizes, minPrice, maxPrice, false, 1);
-      setPage(1);
-    } else {
-      mounted.current = true;
-    }
+    loadMoreProducts(selectedSizes, minPrice, maxPrice, false, 1);
+    setPage(1);
   }, [selectedSizes, minPrice, maxPrice, setPage]);
 
   const handleFilterChange = (newMinPrice: number, newMaxPrice: number) => {
